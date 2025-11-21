@@ -1,101 +1,131 @@
-GAME Engine - Un Motor de Videojuegos
+# GAME Engine – Un Motor de Videojuegos en C++23
 
-Descripción
-GAME Engine es un motor de videojuegos ligero y extensible construido desde cero en C++23, diseñado específicamente para entornos Linux Mint. Utiliza una arquitectura ECS (Entity-Component-System) pura para maximizar el rendimiento y la flexibilidad, permitiendo la creación de juegos con mundos infinitos generados proceduralmente, IA modular, un editor en vivo integrado con ImGui, y soporte para múltiples escenas (desde un menú simple hasta un Arkanoid clásico o un roguelike de aventura).
-Este engine no es un framework como Unity o Godot; es un núcleo bajo nivel que prioriza el control total del desarrollador. Ideal para programadores que quieren entender cada píxel y cada frame, sin dependencias pesadas más allá de raylib para gráficos y rlImGui para el editor.
-¿Por qué este engine?
+## 📘 Descripción
 
-Rendimiento nativo: ECS data-oriented con zero overhead, optimizado para cachés L1/L2.
-Procedural infinito: Mundos que crecen en tiempo real sin loadings, usando Perlin Noise y chunks dinámicos.
-Editor en vivo: Modifica entidades, IA y el mundo mientras juegas – iteración 100x más rápida.
-Reutilizable: El mismo núcleo corre Breakout, un menú y un roguelike infinito sin cambiar código central.
-Linux-first: Desarrollado y testeado en Linux Mint, con CMake para builds limpios.
+**GAME Engine** es un motor de videojuegos ligero y extensible construido desde cero en **C++23**, diseñado específicamente para entornos **Linux Mint**.  
+Está basado en una arquitectura **ECS (Entity-Component-System) pura**, enfocada en maximizar rendimiento y flexibilidad.
 
-Este repositorio es el resultado de un proyecto académico avanzado.
-Capturas de Pantalla y Demos
-Mundo Procedural 
-Expansión dinámica en 4 direcciones con autotiling.
-Editor en Vivo Integrado
-Editor Inspector
-Modificando patrones de IA en runtime – cambia de "Patrol" a "Tracking" y ve el enemigo perseguirte al instante.
+Permite crear:
 
-1. Arquitectura ECS Pura
+- Mundos **infinitos** generados proceduralmente  
+- **IA modular**  
+- Un **editor en vivo** integrado con ImGui  
+- Soporte para **múltiples escenas** (menú, Arkanoid/Breakout, roguelike, etc.)
 
-Componentes como Position, Velocity, MovementPattern – todo data-driven.
-Sistemas independientes: systemMovement(), systemAI(), systemRenderSprites().
-Soporte para hot-add/remove de componentes en runtime.
+Este engine **no es un framework** como Unity o Godot.  
+Es un núcleo de bajo nivel para desarrolladores que quieren **control total**, sin dependencias pesadas (solo *raylib* + *rlImGui*).
 
-2. Generación Procedural Infinita
+---
 
-Perlin Noise header-only para ruido 2D.
-Chunks de 20x20 tiles generados en threads secundarios.
-Expansión en 4 direcciones con coordinate shifting para mantener el origen estable.
-Autotiling automático con reglas de bitmask para transiciones suaves.
+## 🚀 ¿Por qué este engine?
 
-3. Editor Integrado con rlImGui
+- ⚡ **Rendimiento nativo:** ECS data-oriented con zero overhead y optimización para cachés L1/L2.  
+- 🌍 **Procedural infinito:** Mundos que crecen en tiempo real sin pantallas de carga.  
+- 🛠️ **Editor en vivo:** Modifica entidades mientras juegas.  
+- ♻️ **Reutilizable:** El mismo núcleo ejecuta múltiples juegos/escenas sin cambiar el core.  
+- 🐧 **Linux-first:** Probado y desarrollado en Linux Mint con CMake.
 
-Lista de entidades y inspector en vivo.
-Edita posiciones, velocidades, patrones de IA, salud, etc., sin pausar el juego.
-Toggles para debug: IntGrid overlay, spawners visuales.
-Atajo: F1 para abrir, P para pausar.
+Este repositorio es parte de un proyecto académico avanzado.
 
-4. IA Modular y Spawners
+---
 
-MovementPattern: Tracking (persecución con distancia), Circular (órbitas), Patrol (waypoints con loop).
-Spawners: LineHorizontal, Circular, RandomArea – activados por proximidad al jugador.
-Comportamiento emergente: mezcla patrones para hordas complejas.
+## 🖼️ Capturas de Pantalla y Demos
 
-5. Scene Manager y Reutilización
+### 🌍 Mundo Procedural
+- Expansión dinámica en 4 direcciones  
+- Autotiling automático
 
-Clase base Scene con setup(), update(), render(), clean().
-Escenas incluidas: MenuScene, BreakoutScene (Arkanoid), AdventureScene (roguelike).
-Switch seamless con limpieza automática de recursos.
+### 🛠️ Editor en Vivo Integrado
+- Lista de entidades e inspector  
+- Modificación de IA en runtime ("Patrol", "Tracking", etc.)
 
-6. Otros Features
+---
 
-Cámara smooth follow con lerp.
-Colisiones AABB y tile-based.
-Animaciones híbridas (spritesheet o frames separados).
-Soporte para health/score UI fija.
-Debug FPS y overlays integrados.
+# 🧩 1. Arquitectura ECS Pura
 
-Requisitos
+- Componentes como `Position`, `Velocity`, `MovementPattern`  
+- Sistemas independientes:  
+  - `systemMovement()`  
+  - `systemAI()`  
+  - `systemRenderSprites()`  
+- Soporte para **hot add/remove** de componentes en tiempo real  
 
-Sistema Operativo: Linux Mint (testeado en 21.3) o cualquier distro Ubuntu-based.
-Compilador: g++ con soporte C++23 (GCC 13+ recomendado).
-Dependencias:
-raylib (instala con sudo apt install libraylib-dev).
-CMake 3.10+ (sudo apt install cmake).
-Git submodules para ImGui y rlImGui (incluidos en external/).
+---
 
+# 🌄 2. Generación Procedural Infinita
 
+- Perlin Noise (header-only)  
+- Chunks de **20×20 tiles** generados en threads secundarios  
+- Expansión en 4 direcciones con *coordinate shifting*  
+- Autotiling con bitmasking  
 
-Clona el repositorio
-git submodule update --init --recursive  # Para ImGui y rlImGui
-Crea el directorio de build:textmkdir build
-cd build
-Configura y compila con CMake:textcmake ..
-make -j$(nproc)  # Usa todos los cores para build rápido
-Ejecuta el engine:text./GAME
+---
 
-o puedes ejecutar el run.sh
+# 🖥️ 3. Editor Integrado con rlImGui
 
-Modo Juego: Ejecuta ./GAME – empieza en el menú. Presiona ENTER para ir a Adventure o Breakout.
-Modo Editor: Presiona F1 en cualquier escena para abrir el inspector. Selecciona entidades y edita en vivo.
-Extensión: Añade una nueva escena heredando de Scene y regístrala en Game::switchScene().
-Assets: Coloca texturas en assets/ – el engine las carga automáticamente (e.g., "assets/hero.png").
+- Lista de entidades + inspector
+- Edita posiciones, velocidad, salud, IA, etc. **sin pausar el juego**
+- Toggles de debug:  
+  - Grid  
+  - Spawners  
+  - Colisiones  
+- Atajos:  
+  - **F1** abre/cierra editor  
+  - **P** pausa el juego  
 
-Ejemplo rápido para añadir un enemigo nuevo en AdventureScene::setup():
-C++Entity nuevoEnemigo = ecs.createEntity();
-ecs.addComponent(nuevoEnemigo, Position{{500.0f, 300.0f}});
-ecs.addComponent(nuevoEnemigo, MovementPattern{MovementType::Tracking, .target = player, .speed = 150.0f});
-Estructura del Código
-textGAME/
-├── assets/             # Texturas, spritesheets, etc.
-├── build/              # Artefactos de build (gitignore)
-├── external/           # ImGui y rlImGui (submodules)
-├── include/            # Headers: ecs.h, components.h, systems.h, editor/, scenes/
-├── src/                # Fuentes: main.cpp, Game.cpp, systems.cpp, editor/, scenes/
-├── CMakeLists.txt      # Configuración de build
-├── LICENSE             # MIT
-└── README.md           # Este archivo
+---
+
+# 🤖 4. IA Modular y Spawners
+
+### Patrones de Movimiento
+- **Tracking** (persecución)
+- **Circular** (órbitas)
+- **Patrol** (waypoints)
+
+### Spawners
+- LineHorizontal  
+- Circular  
+- RandomArea  
+
+Comportamientos emergentes mediante la combinación de patrones.
+
+---
+
+# 🎬 5. Scene Manager y Reutilización
+
+- Clase base: `Scene` con `setup()`, `update()`, `render()`, `clean()`  
+- Escenas incluidas:
+  - `MenuScene`
+  - `BreakoutScene`
+  - `AdventureScene`
+- Cambios de escena suaves con limpieza automática de recursos
+
+---
+
+# 🧱 6. Otros Features
+
+- Cámara smooth follow con lerp  
+- Colisiones AABB y tile-based  
+- Animaciones (spritesheet o frames separados)  
+- UI integrada (health, score)  
+- Debug FPS y overlays  
+
+---
+
+# 📦 Requisitos
+
+- **SO:** Linux Mint 21.3+ o Ubuntu-based  
+- **Compilador:** GCC 13+ (C++23)  
+- **Dependencias:**
+  - `raylib` → `sudo apt install libraylib-dev`
+  - `CMake` → `sudo apt install cmake`
+  - Submodules (ImGui + rlImGui) incluidos en `external/`
+
+---
+
+# 🔧 Instalación
+
+```bash
+git clone <repo>
+cd GAME
+git submodule update --init --recursive
