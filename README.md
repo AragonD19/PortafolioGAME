@@ -129,3 +129,38 @@ Comportamientos emergentes mediante la combinación de patrones.
 git clone <repo>
 cd GAME
 git submodule update --init --recursive
+
+```
+mkdir build
+cd build
+cmake ..
+make -j$(nproc)
+cd GAME
+git submodule update --init --recursive
+
+```
+Ejecuta:
+```
+
+```
+./GAME
+```
+O usa:
+```
+./run.sh
+```
+
+
+📁 Estructura del Código
+
+```
+
+GAME/
+├── assets/             # Texturas, spritesheets, etc.
+├── build/              # Artefactos de build (gitignore)
+├── external/           # ImGui y rlImGui (submodules)
+├── include/            # ecs.h, components.h, systems.h, editor/, scenes/
+├── src/                # main.cpp, Game.cpp, systems.cpp, editor/, scenes/
+├── CMakeLists.txt      # Configuración de build
+├── LICENSE             # MIT
+└── README.md           # Este archivo
