@@ -162,5 +162,4 @@ GAME/
 ├── include/            # ecs.h, components.h, systems.h, editor/, scenes/
 ├── src/                # main.cpp, Game.cpp, systems.cpp, editor/, scenes/
 ├── CMakeLists.txt      # Configuración de build
-├── LICENSE             # MIT
-└── README.md           # Este archivo
+└── run.sh          
