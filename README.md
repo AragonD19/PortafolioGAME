@@ -99,11 +99,3 @@ textGAME/
 ├── CMakeLists.txt      # Configuración de build
 ├── LICENSE             # MIT
 └── README.md           # Este archivo
-
-
-Autor: [Tu Nombre] – Programador experto en C++ y engines bajo nivel.
-Email: tu-email@example.com
-GitHub Issues: Abre uno para bugs o features.
-Créditos: raylib por raysan5 (motor gráfico), ImGui por ocornut (editor UI).
-
-¡Construye tu próximo gran juego con este engine! Si tienes dudas, como experto te digo: el código es autoexplicativo – sumérgete y hackea. 🚀
