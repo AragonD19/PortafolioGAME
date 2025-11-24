@@ -163,3 +163,11 @@ GAME/
 ├── src/                # main.cpp, Game.cpp, systems.cpp, editor/, scenes/
 ├── CMakeLists.txt      # Configuración de build
 └── run.sh          
+
+```
+
+Videos:
+
+[![Ver demostración en YouTube](https://img.youtube.com/vi/pNpiwJ9nxqU/hqdefault.jpg)](https://youtu.be/pNpiwJ9nxqU)
+[![Ver demostración en YouTube](https://img.youtube.com/vi/KID-dKfEy1g/hqdefault.jpg)](https://youtu.be/KID-dKfEy1g)
+[![Ver demostración en YouTube](https://img.youtube.com/vi/zHB_1_eOeiU/0.jpg)](https://youtu.be/zHB_1_eOeiU)
